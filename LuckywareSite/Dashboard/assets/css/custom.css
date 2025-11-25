@@ -1,0 +1,67 @@
+:root {
+  --background: #151515;
+  --secondary-background: #111111;
+    --main-color: #850000;
+    --main-hover-color: #258efe;
+    --discord-col: #7289DA;
+    --paypal: #253B80;
+}
+.icon {
+    transition: linear 0.3s;
+}
+.btn:hover .icon {
+    color: var(--main-color);
+}
+
+.icon2 {
+    transition: linear 0.3s;
+}
+.btn2:hover .icon2 {    
+    color: var(--main-color);
+}
+
+.iconB {
+    transition: linear 0.3s;
+}
+.btnB:hover .iconB {
+    color: black;
+}
+
+input::placeholder {
+    color: rgb(207, 203, 202);
+}
+input:focus {
+    outline: none;
+}
+
+.container {
+    height: 100vh;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.drop-in {
+    transition: linear;
+    animation: drop-in 1s ease 200ms backwards;
+    animation-delay: 500ms; /* Add a 500ms delay before starting the animation */
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0px);
+    }
+}
+
+
+.even {
+    border-radius: 2rem;
+}
