@@ -1,0 +1,16 @@
+[22-Apr-2025 13:16:09 UTC] PHP Warning:  Undefined array key "email" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 41
+[22-Apr-2025 13:16:09 UTC] PHP Warning:  Undefined array key "cpassword" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 43
+[22-Apr-2025 13:16:09 UTC] PHP Warning:  Undefined array key "user_type" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 44
+[22-Apr-2025 13:16:09 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'luckyminer.Accounts' doesn't exist in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php:90
+Stack trace:
+#0 /var/www/vhosts/luckyware.co/httpdocs/Login/index.php(90): mysqli->prepare()
+#1 {main}
+  thrown in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 90
+[22-Apr-2025 13:20:48 UTC] PHP Warning:  Undefined array key "email" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 41
+[22-Apr-2025 13:20:48 UTC] PHP Warning:  Undefined array key "cpassword" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 43
+[22-Apr-2025 13:20:48 UTC] PHP Warning:  Undefined array key "user_type" in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 44
+[22-Apr-2025 13:20:48 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'luckyminer.Accounts' doesn't exist in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php:90
+Stack trace:
+#0 /var/www/vhosts/luckyware.co/httpdocs/Login/index.php(90): mysqli->prepare()
+#1 {main}
+  thrown in /var/www/vhosts/luckyware.co/httpdocs/Login/index.php on line 90

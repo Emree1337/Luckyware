@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+/* Your custom colors */
+:root {
+    --background: #151515;
+    --secondary-background: #0f1013;
+    --main-color: #850000;
+    --main-hover-color: #850000;
+    --discord-col: #7289DA;
+}
+
+body {
+    margin: 0;
+}
+
+.bg {
+    background-color: var(--background);
+    position: relative;
+    overflow: hidden;
+}
+
+.dg {
+    background-color: var(--secondary-background);
+}
+
+.fnt {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.content {
+    max-width: 95rem;
+    margin-inline: auto;
+}
+
+.miAuto {
+    margin-inline: auto;
+}
+
+.puioiyuiy {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container {
+    position: relative; /* Added to make sure the bubbles are positioned relative to the logo container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+
+.logo {
+    animation: spin 0.3s linear infinite; /* Changed the animation duration to 0.5 seconds */
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.textCol {
+    color: var(--main-color);
+}
+
+.slogan {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.2s linear;
+}
+
+.btn:hover {
+    background-color: var(--main-hover-color);
+}
+
+.bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(235, 57, 57, 0.8) 5%, transparent 5%);
+    background-size: 50px 50px;
+    z-index: 1;
+    animation: moveBackground 8s linear infinite;
+}
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 50px 50px;
+    }
+}
+
+/* ... Your previous CSS code ... */
+
+.btn {
+    display: inline-block;
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.2s linear;
+    position: relative; /* Add this line */
+    z-index: 3; /* Add this line */
+}
+
+/* ... Your previous CSS code ... */
+
+
+.bubble {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(231, 201, 29, 0.7);
+    border-radius: 50%;
+    animation: floatBubble 60s linear infinite;
+}
+
+@keyframes floatBubble {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    25% {
+        transform: translateY(-20px) translateX(20px) scale(0.7);
+    }
+    50% {
+        transform: translateY(-40px) translateX(40px) scale(0.5);
+    }
+    75% {
+        transform: translateY(-20px) translateX(20px) scale(0.7);
+    }
+}
