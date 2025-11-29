@@ -4,8 +4,8 @@ It is intended for studying malware and security research, not for use or deploy
 
 This source is just for you to learn and maybe paste parts from. Im pretty sure no one can possibly get Luckyware fully up and running again without my help or some major recoding.
 
-Database isnt included, wont be sold or posted anywhere, thank you everyone for helping me grind millions of data, dont you worry tho ill just keep them, no selling, no leaking,
-just keeping :)
+The Database included is empty, only has essentials to run Luckyware. The original Database that contains the millions of data logged throughout the years will be kept private, wont be sold or posted anywhere. 
+Thank you everyone for helping me grind millions of data!
 
 # Photos from the site:
 
